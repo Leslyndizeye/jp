@@ -1,15 +1,21 @@
 import type { ReactNode } from "react";
 
+// components/about/skills.tsx
 const SKILLS = [
-  "UI/UX Design",
-  "Design Systems",
-  "Prototyping & Motion",
-  "Frontend Development",
-  "TypeScript & React",
-  "Interaction Design",
-  "Performance Tuning",
-  "Accessibility",
-  "Visual Identity",
+  "Healthcare Management",
+  "Clinical Psychology",
+  "Global Health",
+  "Mental Health Advocacy",
+  "Health Systems Strengthening",
+  "Quality Improvement",
+  "Psycho-Oncology",
+  "Research & Evidence-Based Interventions",
+  "Maternal & Child Health",
+  "Sexual & Reproductive Health",
+  "Public Health",
+  "Infection Prevention & Control",
+  "Academic Mentorship",
+  "Thesis Direction",
 ];
 
 export function Skills(): ReactNode {

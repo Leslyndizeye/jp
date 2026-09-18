@@ -1,27 +1,39 @@
-import type { ReactNode } from "react";
+"use client";
+
+import { useState, type ReactNode } from "react";
 
 type Entry = {
   school: string;
   degree: string;
   period: string;
-  slug?: string;
+  brand: string;
+  logoUrl?: string;
 };
 
 const ENTRIES: Entry[] = [
   {
-    school: "Rhode Island School of Design",
-    degree: "BFA, Graphic Design",
-    period: "2013 – 2017",
+    school: "Mount Kenya University",
+    degree: "Postgraduate Diploma, Psychiatric Counseling / Clinical Psychology",
+    period: "In progress",
+    brand: "#046A38",
   },
   {
-    school: "Stanford University",
-    degree: "HCI Certificate, d.school",
-    period: "2018",
+    school: "Mount Kenya University",
+    degree: "Master's Degree, Counseling / Clinical Psychology",
+    period: "Completed",
+    brand: "#046A38",
   },
   {
-    school: "Bruno Simon's Three.js Journey",
-    degree: "WebGL & Shaders",
-    period: "2022",
+    school: "Southern New Hampshire University (SNHU)",
+    degree: "Bachelor's Degree, Healthcare Management (Global Perspectives)",
+    period: "Completed",
+    brand: "#004B8D",
+  },
+  {
+    school: "Southern New Hampshire University (SNHU)",
+    degree: "Advanced Diploma in Science",
+    period: "Completed",
+    brand: "#004B8D",
   },
 ];
 
@@ -37,7 +49,7 @@ export function Education(): ReactNode {
         <ul className="flex flex-col gap-2">
           {ENTRIES.map((entry) => (
             <li
-              key={`${entry.school}-${entry.period}`}
+              key={`${entry.school}-${entry.degree}`}
               className="bg-background border-foreground/5 flex items-center gap-4 rounded-3xl border p-2"
               style={{ minHeight: ROW_HEIGHT }}
             >
@@ -61,24 +73,31 @@ export function Education(): ReactNode {
 }
 
 function SchoolLogo({ entry }: { entry: Entry }): ReactNode {
+  const [imgFailed, setImgFailed] = useState(false);
   const initials = entry.school.charAt(0);
+  const hasImage = Boolean(entry.logoUrl) && !imgFailed;
+
   return (
     <span
-      className="border-foreground/15 inline-flex h-12 w-12 shrink-0 items-center justify-center border"
+      className="border-foreground/15 inline-flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden border"
       aria-hidden="true"
-      style={{ borderRadius: 14 }}
+      style={{
+        borderRadius: 14,
+        backgroundColor: hasImage ? "#ffffff" : entry.brand,
+      }}
     >
-      {entry.slug ? (
+      {hasImage ? (
         <img
-          src={`https://cdn.simpleicons.org/${entry.slug}`}
+          src={entry.logoUrl}
           alt=""
-          width={24}
-          height={24}
-          className="h-6 w-6"
+          width={32}
+          height={32}
+          className="h-8 w-8 object-contain"
           draggable={false}
+          onError={() => setImgFailed(true)}
         />
       ) : (
-        <span className="text-foreground/60 text-[18px] font-semibold tracking-tight">
+        <span className="text-[18px] font-semibold tracking-tight text-white">
           {initials}
         </span>
       )}

@@ -1,22 +1,57 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { useRef, useSyncExternalStore, type ReactNode } from "react";
-
-import { DottedPattern } from "@/components/ui/dotted-pattern";
 
 type Polaroid = {
   id: string;
   rotate: number;
+  src: string;
+  alt: string;
 };
 
+// Faceless, thematic HD photos (Unsplash License — free to use, no attribution
+// required, no real identifiable people depicted). Swap any of these for
+// John Peter's own photos later by changing `src`/`alt` — no other code
+// needs to change.
 const PHOTOS: Polaroid[] = [
-  { id: "a", rotate: -8 },
-  { id: "b", rotate: 6 },
-  { id: "c", rotate: -4 },
-  { id: "d", rotate: 7 },
-  { id: "e", rotate: -6 },
-  { id: "f", rotate: 5 },
+  {
+    id: "a",
+    rotate: -8,
+    src: "https://images.unsplash.com/photo-1482059470115-0aadd6bf6834?fm=jpg&q=80&w=800&auto=format&fit=crop",
+    alt: "World globe — global health",
+  },
+  {
+    id: "b",
+    rotate: 6,
+    src: "https://images.unsplash.com/photo-1674702703321-b44990d8b6ba?fm=jpg&q=80&w=800&auto=format&fit=crop",
+    alt: "Doctor's coat with a stethoscope — health systems",
+  },
+  {
+    id: "c",
+    rotate: -4,
+    src: "https://images.unsplash.com/photo-1674702693637-330943cdf0a1?fm=jpg&q=80&w=800&auto=format&fit=crop",
+    alt: "Notebook sketch of a face — psychology",
+  },
+  {
+    id: "d",
+    rotate: 7,
+    src: "https://images.unsplash.com/photo-1674702685239-b4ab4f44f944?fm=jpg&q=80&w=800&auto=format&fit=crop",
+    alt: "Open book on a desk — academic research",
+  },
+  {
+    id: "e",
+    rotate: -6,
+    src: "https://images.unsplash.com/photo-1518152006812-edab29b069ac?fm=jpg&q=80&w=800&auto=format&fit=crop",
+    alt: "Microscope on a lab bench — research",
+  },
+  {
+    id: "f",
+    rotate: 5,
+    src: "https://images.unsplash.com/photo-1670641318256-63785b325f4d?fm=jpg&q=80&w=800&auto=format&fit=crop",
+    alt: "Coastal community, Sierra Leone — community health",
+  },
 ];
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -74,7 +109,15 @@ function PolaroidCard({
       }}
       className="relative aspect-[3/4] w-[clamp(6rem,11vw,9rem)] shrink-0 overflow-hidden rounded-2xl border-6 border-neutral-300/40 bg-white p-1.5 dark:border-white/15 dark:bg-neutral-900"
     >
-      <DottedPattern className="relative h-full w-full overflow-hidden rounded-xl" />
+      <div className="relative h-full w-full overflow-hidden rounded-xl">
+        <Image
+          src={photo.src}
+          alt={photo.alt}
+          fill
+          sizes="(min-width: 640px) 9rem, 6rem"
+          className="object-cover"
+        />
+      </div>
     </motion.div>
   );
 }

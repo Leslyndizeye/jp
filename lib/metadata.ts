@@ -1,39 +1,69 @@
+// lib/metadata.ts
 import type { Metadata } from "next";
 
 export const siteConfig = {
-  name: "Portfolio",
-  description:
-    "A modern, accessible portfolio template built with Next.js, Tailwind CSS, and TypeScript.",
-  url: "https://example.com",
+  title: "John Peter Ndikubwimana",
+  description: "Healthcare Management | Global Health | Mental Health | Research Professional",
+  url: "https://your-domain.com", // Replace with your domain
   ogImage: "/og-image.png",
-  creator: "@yourhandle",
-  authors: [
-    {
-      name: "Your Name",
-      url: "https://example.com",
-    },
-  ],
-  keywords: [
-    "portfolio",
-    "personal site",
-    "Next.js",
-    "React",
-    "Tailwind CSS",
-    "TypeScript",
-  ],
-} as const;
+  twitterHandle: "@yourhandle",
+  githubHandle: "yourgithub",
+  linkedinHandle: "yourlinkedin",
+  email: "johnpeter.ndikubwimana@example.com",
+};
 
+// Default metadata for the entire site
 export const baseMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.title}`,
   },
   description: siteConfig.description,
-  keywords: [...siteConfig.keywords],
-  authors: [...siteConfig.authors],
-  creator: siteConfig.creator,
-  publisher: siteConfig.name,
+  keywords: [
+    "Healthcare Management",
+    "Global Health",
+    "Mental Health",
+    "Clinical Psychology",
+    "Psycho-Oncology",
+    "Research Professional",
+    "Health Systems Strengthening",
+    "Quality Improvement",
+    "Rwanda Health",
+    "Public Health",
+    "Maternal Health",
+    "Child Health",
+    "Sexual Reproductive Health",
+  ],
+  authors: [
+    {
+      name: "John Peter Ndikubwimana",
+    },
+  ],
+  creator: "John Peter Ndikubwimana",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    siteName: siteConfig.title,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.title,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+    creator: siteConfig.twitterHandle,
+  },
   robots: {
     index: true,
     follow: true,
@@ -46,84 +76,32 @@ export const baseMetadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "/",
+    canonical: siteConfig.url,
   },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteConfig.url,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    siteName: siteConfig.name,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.name,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-    creator: siteConfig.creator,
-  },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-icon.png",
-  },
-  manifest: "/site.webmanifest",
 };
 
+// Helper function to create page-specific metadata
 export function createMetadata({
   title,
   description,
-  path = "/",
-  image,
-  noIndex = false,
+  path,
 }: {
   title?: string;
   description?: string;
   path?: string;
-  image?: string;
-  noIndex?: boolean;
 }): Metadata {
-  const url = `${siteConfig.url}${path}`;
-  const ogImage = image ?? siteConfig.ogImage;
-
+  const url = path ? `${siteConfig.url}${path}` : siteConfig.url;
+  
   return {
-    title,
-    description,
-    alternates: {
-      canonical: path,
-    },
+    title: title || siteConfig.title,
+    description: description || siteConfig.description,
     openGraph: {
-      title: title ?? siteConfig.name,
-      description: description ?? siteConfig.description,
       url,
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: title ?? siteConfig.name,
-        },
-      ],
+      title: title || siteConfig.title,
+      description: description || siteConfig.description,
     },
-    twitter: {
-      title: title ?? siteConfig.name,
-      description: description ?? siteConfig.description,
-      images: [ogImage],
+    alternates: {
+      canonical: url,
     },
-    ...(noIndex && {
-      robots: {
-        index: false,
-        follow: false,
-      },
-    }),
   };
 }

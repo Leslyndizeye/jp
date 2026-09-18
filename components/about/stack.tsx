@@ -1,33 +1,59 @@
 "use client";
 
-import { RotateCcw } from "lucide-react";
+import {
+  BarChart3,
+  Brain,
+  FileSpreadsheet,
+  FileText,
+  Globe2,
+  HeartPulse,
+  RotateCcw,
+  Search,
+  type LucideIcon,
+} from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 type Chip = {
   label: string;
-  slug: string;
   bg: string;
   fg: string;
-  iconUrl?: string;
+  // Real brand logo via Simple Icons CDN
+  slug?: string;
+  // Concept/tool icon rendered like the logos: colored, centered in a white circle
+  icon?: LucideIcon;
 };
 
 const CHIPS: Chip[] = [
+  { label: "Global Health", bg: "#0EA5E9", fg: "#ffffff", icon: Globe2 },
   {
-    label: "Figma",
-    slug: "figma",
-    bg: "#1f1f1f",
+    label: "Mental Health & Psychotherapy",
+    bg: "#8B5CF6",
     fg: "#ffffff",
-    iconUrl: "https://svgl.app/library/figma.svg",
+    icon: Brain,
   },
-  { label: "React", slug: "react", bg: "#1FB6CB", fg: "#ffffff" },
-  { label: "Next.js", slug: "nextdotjs", bg: "#1f1f1f", fg: "#ffffff" },
-  { label: "TypeScript", slug: "typescript", bg: "#2F74C0", fg: "#ffffff" },
-  { label: "shadcn/ui", slug: "shadcnui", bg: "#5b54ff", fg: "#ffffff" },
-  { label: "Cursor", slug: "cursor", bg: "#111111", fg: "#ffffff" },
-  { label: "GSAP", slug: "gsap", bg: "#0AE448", fg: "#0a0a0a" },
-  { label: "GitHub", slug: "github", bg: "#181717", fg: "#ffffff" },
-  { label: "Vercel", slug: "vercel", bg: "#0a0a0a", fg: "#ffffff" },
-  { label: "Tailwind CSS", slug: "tailwindcss", bg: "#2BBCF5", fg: "#ffffff" },
+  {
+    label: "Health Systems & QI",
+    bg: "#10B981",
+    fg: "#ffffff",
+    icon: HeartPulse,
+  },
+  {
+    label: "Qualitative Research",
+    bg: "#F59E0B",
+    fg: "#1f1f1f",
+    icon: Search,
+  },
+  {
+    label: "SPSS / Data Analysis",
+    bg: "#0f766e",
+    fg: "#ffffff",
+    icon: BarChart3,
+  },
+  { label: "Excel", bg: "#217346", fg: "#ffffff", icon: FileSpreadsheet },
+  { label: "Word", bg: "#2B579A", fg: "#ffffff", icon: FileText },
+  { label: "ORCID", slug: "orcid", bg: "#A6CE39", fg: "#1f1f1f" },
+  { label: "ResearchGate", slug: "researchgate", bg: "#00CCBB", fg: "#ffffff" },
+  { label: "Mendeley", slug: "mendeley", bg: "#8c191d", fg: "#ffffff" },
 ];
 
 const CHIP_RADIUS = 14;
@@ -214,7 +240,7 @@ export function Stack(): ReactNode {
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-3">
         <h3 className="text-foreground text-[15px] font-semibold tracking-tight">
-          Stack
+          Toolkit
         </h3>
       </div>
 
@@ -267,6 +293,8 @@ export function Stack(): ReactNode {
 }
 
 function ChipPill({ chip }: { chip: Chip }): ReactNode {
+  const Icon = chip.icon;
+
   return (
     <div
       className="dark:ring-1 dark:ring-white/15 inline-flex items-center gap-2 p-1 pr-2 text-[15px] font-medium tracking-tight sm:text-[16px]"
@@ -281,14 +309,22 @@ function ChipPill({ chip }: { chip: Chip }): ReactNode {
         style={{ borderRadius: `${ICON_RADIUS}px` }}
         aria-hidden="true"
       >
-        <img
-          src={chip.iconUrl ?? `https://cdn.simpleicons.org/${chip.slug}`}
-          alt=""
-          width={18}
-          height={18}
-          className="h-5 w-5"
-          draggable={false}
-        />
+        {Icon ? (
+          <Icon
+            className="h-[18px] w-[18px]"
+            strokeWidth={2.25}
+            style={{ color: chip.bg }}
+          />
+        ) : (
+          <img
+            src={`https://cdn.simpleicons.org/${chip.slug}`}
+            alt=""
+            width={18}
+            height={18}
+            className="h-5 w-5"
+            draggable={false}
+          />
+        )}
       </span>
       <span>{chip.label}</span>
     </div>

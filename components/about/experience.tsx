@@ -8,63 +8,65 @@ type Entry = {
   company: string;
   role: string;
   period: string;
+  description?: string;
   slug?: string;
-  brand?: string;
+  logoUrl?: string;
+  brand: string;
 };
 
 const ENTRIES: Entry[] = [
   {
-    company: "Linear",
-    role: "Senior Design Engineer",
-    period: "Mar 2024 – Present",
-    slug: "linear",
-    brand: "#5E6AD2",
+    company: "The Fred Hollows Foundation / Rwanda Ophthalmology Society",
+    role: "Programs Assistant",
+    period: "2026",
+    description:
+      "Coordinated national cataract surgery outreaches across public hospitals, provided general secretariat support.",
+    brand: "#00A9CE",
   },
   {
-    company: "Vercel",
-    role: "Product Designer",
-    period: "Aug 2022 – Feb 2024",
-    slug: "vercel",
-    brand: "#0a0a0a",
+    company: "University of Global Health Equity (UGHE)",
+    role: "Seasonal Data Collector Consultant",
+    period: "2025 – 2026",
+    description:
+      "Supported MGDH and Global Surgery students through qualitative data collection, ethical consent, transcription, and participant psychosocial support.",
+    brand: "#00543C",
   },
   {
-    company: "Stripe",
-    role: "Design Engineer",
-    period: "Jun 2021 – Jul 2022",
-    slug: "stripe",
-    brand: "#635BFF",
+    company: "Rubagumya Lab",
+    role: "Psycho-Oncology Research Fellow",
+    period: "2025 – 2026",
+    description:
+      "Contributed to research at the intersection of cancer care and psychosocial health.",
+    brand: "#7C3AED",
   },
   {
-    company: "Figma",
-    role: "UI Engineer",
-    period: "Sep 2019 – May 2021",
-    slug: "figma",
-    brand: "#A259FF",
+    company: "Ruli Higher Institute of Health (RHIH)",
+    role: "Part-time Thesis Director",
+    period: "2025",
+    description:
+      "Supervised Bachelor of Science in Nursing and Midwifery students in research methodology, proposal development, academic writing, and thesis development.",
+    brand: "#1E3A8A",
   },
   {
-    company: "Notion",
-    role: "Product Designer",
-    period: "Jan 2018 – Aug 2019",
-    slug: "notion",
-    brand: "#111111",
+    company: "Partners In Health / Inshuti Mu Buzima",
+    role: "Accreditation & Quality Improvement Officer",
+    period: "2023 – 2024",
+    description:
+      "Supported quality improvement initiatives and health standards compliance across Kirege, Winkwavu, and Butaro Level Teaching Hospitals.",
+    brand: "#0072BC",
   },
   {
-    company: "Airbnb",
-    role: "Design Intern",
-    period: "May 2017 – Dec 2017",
-    slug: "airbnb",
-    brand: "#FF5A5F",
-  },
-  {
-    company: "Freelance",
-    role: "Designer & Developer",
-    period: "2015 – 2017",
-    brand: "#0AE448",
+    company: "Rise Next Mentorship Program",
+    role: "Admissions Support",
+    period: "2023 – 2024",
+    description:
+      "Contributed to student admissions and mentorship program activities.",
+    brand: "#F59E0B",
   },
 ];
 
 const COLLAPSED_COUNT = 2.5;
-const ROW_HEIGHT = 64;
+const ROW_HEIGHT = 92;
 const ROW_GAP = 8;
 
 export function Experience(): ReactNode {
@@ -98,19 +100,24 @@ export function Experience(): ReactNode {
             {ENTRIES.map((entry) => (
               <li
                 key={`${entry.company}-${entry.period}`}
-                className="bg-background border-foreground/5 flex items-center gap-4 rounded-3xl border p-2"
+                className="bg-background border-foreground/5 flex items-start gap-4 rounded-3xl border p-3"
                 style={{ minHeight: ROW_HEIGHT }}
               >
                 <CompanyLogo entry={entry} />
-                <div className="flex min-w-0 flex-col">
+                <div className="flex min-w-0 flex-col gap-0.5">
                   <span className="text-foreground text-[17px] font-semibold tracking-tight sm:text-[18px]">
                     {entry.company}
                   </span>
-                  <span className="text-foreground/65 mt-0.5 text-[14px] tracking-tight sm:text-[15px]">
+                  <span className="text-foreground/65 text-[14px] tracking-tight sm:text-[15px]">
                     {entry.role}
                     <span className="text-foreground/30 mx-2">•</span>
                     <span className="text-foreground/55">{entry.period}</span>
                   </span>
+                  {entry.description ? (
+                    <p className="text-foreground/50 mt-1 text-[13px] leading-snug tracking-tight sm:text-[14px]">
+                      {entry.description}
+                    </p>
+                  ) : null}
                 </div>
               </li>
             ))}
@@ -167,17 +174,30 @@ export function Experience(): ReactNode {
 }
 
 function CompanyLogo({ entry }: { entry: Entry }): ReactNode {
+  const [imgFailed, setImgFailed] = useState(false);
   const initials = entry.company.charAt(0);
+  const hasImage = Boolean((entry.logoUrl || entry.slug) && !imgFailed);
+
   return (
     <span
-      className="ring-foreground/8 inline-flex h-12 w-12 shrink-0 items-center justify-center bg-white ring-1 dark:ring-white/10"
+      className="ring-foreground/8 inline-flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden bg-white ring-1 dark:ring-white/10"
       aria-hidden="true"
       style={{
         borderRadius: 14,
-        ...(entry.slug ? {} : { backgroundColor: entry.brand }),
+        ...(hasImage ? {} : { backgroundColor: entry.brand }),
       }}
     >
-      {entry.slug ? (
+      {entry.logoUrl && !imgFailed ? (
+        <img
+          src={entry.logoUrl}
+          alt=""
+          width={32}
+          height={32}
+          className="h-8 w-8 object-contain"
+          draggable={false}
+          onError={() => setImgFailed(true)}
+        />
+      ) : entry.slug && !imgFailed ? (
         <img
           src={`https://cdn.simpleicons.org/${entry.slug}`}
           alt=""
@@ -185,6 +205,7 @@ function CompanyLogo({ entry }: { entry: Entry }): ReactNode {
           height={24}
           className="h-6 w-6"
           draggable={false}
+          onError={() => setImgFailed(true)}
         />
       ) : (
         <span className="text-[18px] font-semibold tracking-tight text-white">

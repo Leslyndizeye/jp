@@ -26,17 +26,17 @@ export default function AboutPage(): ReactNode {
         <FadeIn delay={0.5}>
           <div className="rounded-4xl border border-foreground/5 bg-foreground/1.5 p-8 sm:p-12 dark:bg-foreground/3">
             <h1 className="font-serif text-[1.75rem] font-medium tracking-tight text-foreground sm:text-[2rem]">
-              Hello! I&rsquo;m <span className="border-b border-foreground/30 pb-0.5">Josh Mercer</span>.
+              Hello! I&rsquo;m <span className="border-b border-foreground/30 pb-0.5">John Peter</span>.
             </h1>
             <div className="mt-8 space-y-6 text-[17px] leading-[1.7] tracking-tight text-foreground/75 sm:text-[18px]">
               <p>
-                A <strong className="font-semibold text-foreground">product designer and frontend engineer</strong> passionate about building intuitive, human-centered digital experiences. With a background in <strong className="font-semibold text-foreground">visual craft</strong> and <strong className="font-semibold text-foreground">interaction design</strong>, I bring a unique blend of design thinking and technical execution to every project.
+                A <strong className="font-semibold text-foreground">public health researcher and quality improvement specialist</strong> passionate about strengthening health systems and improving care where it&rsquo;s needed most. With a background spanning <strong className="font-semibold text-foreground">clinical psychology</strong> and <strong className="font-semibold text-foreground">global health delivery</strong>, I bring together research rigor and hands-on program work across Rwanda&rsquo;s healthcare ecosystem.
               </p>
               <p>
-                My journey into design began when I realized how often good user experience was missing from powerful tools. That led me to embrace <strong className="font-semibold text-foreground">user-centered design</strong> as both a mindset and a craft, one that balances clarity, creativity, and functionality.
+                My work began at the intersection of research and real-world impact — realizing how often good evidence never reaches the people delivering care. That led me to embrace <strong className="font-semibold text-foreground">evidence-based, human-centered health interventions</strong> as both a mindset and a practice, balancing academic rigor with practical, on-the-ground delivery.
               </p>
               <p>
-                Currently leading design at small product teams shipping software for <strong className="font-semibold text-foreground">creative professionals</strong>, I&rsquo;m always looking for opportunities to <strong className="font-semibold text-foreground">shape thoughtful interfaces and build scalable design systems</strong>.
+                Currently contributing to <strong className="font-semibold text-foreground">psycho-oncology research, health data collection, and academic mentorship</strong> across leading institutions in Rwanda, I&rsquo;m always looking for opportunities to <strong className="font-semibold text-foreground">advance health equity and support the next generation of health professionals</strong>.
               </p>
             </div>
           </div>

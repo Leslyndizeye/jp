@@ -1,11 +1,12 @@
 import {
   ArrowRight,
-  Bot,
-  Compass,
-  Layers,
-  LineChart,
-  Sparkles,
-  Wand2,
+  BookOpen,
+  Heart,
+  Stethoscope,
+  Globe,
+  GraduationCap,
+  Microscope,
+  Users,
 } from "lucide-react";
 import type { ComponentType, ReactNode } from "react";
 import Image from "next/image";
@@ -13,11 +14,7 @@ import Link from "next/link";
 
 import { FadeIn } from "@/components/ui/motion-primitives";
 
-/**
- * Project imagery below is mockup-only. All visuals are sourced from
- * Dribbble and credit belongs to the original creators on dribbble.com.
- * Replace these with your own work before shipping.
- */
+
 
 type Project = {
   id: string;
@@ -29,89 +26,93 @@ type Project = {
   imageRatio: number;
   image: string;
   imageAlt: string;
+  link?: string; // Optional external link
 };
 
 const PROJECTS: Project[] = [
   {
-    id: "loom",
-    icon: Sparkles,
-    iconLabel: "LOOM",
-    title:
-      "An AI writing companion that thinks alongside you, allowing you to capture ideas, edits, and drafts in one focused space.",
-    description:
-      "I designed Loom, a focused writing surface where ideas, edits, and drafts coexist without the chat clutter.",
-    meta: "Design Engineer, 2024",
-    imageRatio: 752 / 497,
-    image:
-      "https://cdn.dribbble.com/userupload/46128964/file/b92b9d268dd928642ca94bd49e32923a.jpg?resize=752x497&vertical=center",
-    imageAlt: "Loom AI writing companion mockup",
+    id: "publications",
+    icon: BookOpen,
+    iconLabel: "Research",
+    title: "Research Portfolio & Publications",
+    description: "Track his scientific output — 6 peer-reviewed publications covering psychiatric mental health, maternal and child health, adolescent SRH, and infection prevention — on his ResearchGate profile.",
+    meta: "2023-2026 • ResearchGate",
+    imageRatio: 1 / 1,
+    image: "https://images.unsplash.com/photo-1518082462598-2e71183941a9?q=80&w=1600&auto=format&fit=crop",
+    imageAlt: "Research publications and academic writing on a desk",
+    link: "https://www.researchgate.net/profile/John-Ndikubwimana",
   },
   {
-    id: "atlas",
-    icon: Compass,
-    iconLabel: "Atlas Studio",
-    title: "A two week brand and product sprint for a creative studio.",
-    description:
-      "End to end identity, marketing site, and a small product surface designed to feel quietly confident across every touchpoint.",
-    meta: "Product & Brand Designer, 2025",
-    imageRatio: 1024 / 768,
-    image:
-      "https://cdn.dribbble.com/userupload/24599416/file/original-1ae5075dcd129aebb16bdbca24b41ac7.png?resize=1024x768&vertical=center",
-    imageAlt: "Atlas Studio brand and product sprint mockup",
+    id: "ghc-fellowship",
+    icon: Globe,
+    iconLabel: "Fellowship",
+    title: "Global Health Corps Fellowship",
+    description: "Alumnus (2023-2024) contributing to health systems strengthening initiatives across Rwanda's healthcare ecosystem.",
+    meta: "2023-2024 • Rwanda",
+    imageRatio: 4 / 3,
+    image: "https://images.unsplash.com/photo-1642009071428-119813340e22?q=80&w=1600&auto=format&fit=crop",
+    imageAlt: "Map with pins marking locations — health systems strengthening across regions",
+    link: "#"
   },
   {
-    id: "rhythm",
-    icon: LineChart,
-    iconLabel: "Rhythm",
-    title: "Calm analytics for indie founders.",
-    description:
-      "A weekly digest that turns raw product data into a simple narrative. Built so you can read it on a Sunday with coffee.",
-    meta: "Founder & Designer, 2024",
-    imageRatio: 1024 / 768,
-    image:
-      "https://cdn.dribbble.com/userupload/47357856/file/75841fa59f32f05ca6c5ddf02d08dfe6.png?resize=1024x768&vertical=center",
-    imageAlt: "Rhythm calm analytics mockup",
+    id: "psycho-oncology",
+    icon: Heart,
+    iconLabel: "Research",
+    title: "Psycho-Oncology Research",
+    description: "Research Fellow at Rubagumya Lab exploring the intersection of cancer care and psychosocial health in Rwandan healthcare settings.",
+    meta: "2025-2026 • Rubagumya Lab",
+    imageRatio: 4 / 3,
+    image: "https://images.unsplash.com/photo-1604881991720-f91add269bed?q=80&w=1600&auto=format&fit=crop",
+    imageAlt: "Hands offering comfort and psychosocial support",
+    link: "#"
   },
   {
-    id: "groove",
-    icon: Wand2,
-    iconLabel: "Groove",
-    title:
-      "Reimagining the booking flow for a music school, asisting thousands of students in finding the right lessons.",
-    description:
-      "I led a redesign of the lesson booking experience, cutting drop off in half and making the schedule feel like a calendar people actually want to open.",
-    meta: "Lead Designer, 2023",
-    imageRatio: 1024 / 768,
-    image:
-      "https://cdn.dribbble.com/userupload/43955214/file/original-d4cde1de803e84b97d8892e3444c04b0.png?resize=1024x768&vertical=center",
-    imageAlt: "Groove music school booking flow mockup",
+    id: "ughe-data-collection",
+    icon: Microscope,
+    iconLabel: "Consultancy",
+    title: "UGHE Data Collection Consultant",
+    description: "Seasonal Data Collector supporting MGDH and Global Surgery students with qualitative data collection, ethical consent, and participant psychosocial support.",
+    meta: "2025-2026 • UGHE",
+    imageRatio: 4 / 3,
+    image: "https://images.unsplash.com/photo-1517120026326-d87759a7b63b?q=80&w=1600&auto=format&fit=crop",
+    imageAlt: "Hospital corridor where qualitative data collection takes place",
+    link: "#"
   },
   {
-    id: "fieldnote",
-    icon: Layers,
-    iconLabel: "Fieldnote",
-    title:
-      "A pocket sized research tool for design teams that want to get out of their docs and into the world.",
-    description:
-      "Capture quotes, tag patterns, and synthesize themes in one place. The interface stays out of the way so the thinking can happen.",
-    meta: "Design Engineer, 2024",
-    imageRatio: 1024 / 768,
-    image:
-      "https://cdn.dribbble.com/userupload/30310902/file/original-621e7fe47be9d11ee14544456c693bec.png?resize=1024x768&vertical=center",
-    imageAlt: "Fieldnote pocket sized research tool mockup",
+    id: "quality-improvement",
+    icon: Stethoscope,
+    iconLabel: "Healthcare",
+    title: "Quality Improvement Initiatives",
+    description: "Accreditation & Quality Improvement Officer supporting health standards compliance across Kirege, Winkwavu, and Butaro Level Teaching Hospitals.",
+    meta: "2023-2024 • PIH/Inshuti Mu Buzima",
+    imageRatio: 4 / 3,
+    image: "https://images.unsplash.com/photo-1629410484397-a4dcd74088a0?q=80&w=1600&auto=format&fit=crop",
+    imageAlt: "Bright hospital hallway representing facility standards and compliance",
+    link: "#"
   },
   {
-    id: "talkback",
-    icon: Bot,
-    iconLabel: "Talkback",
-    title: "A friendlier interface for talking to language models.",
-    description:
-      "An exploration of how AI chat could feel less like a terminal and more like a conversation with a curious friend.",
-    meta: "Independent Project, 2025",
-    imageRatio: 1024 / 768,
-    image:
-      "https://cdn.dribbble.com/userupload/16560717/file/original-c6f745d50302d66609bfe080f99f5396.png?resize=1024x768&vertical=center",
-    imageAlt: "Talkback friendlier AI chat interface mockup",
+    id: "thesis-direction",
+    icon: GraduationCap,
+    iconLabel: "Education",
+    title: "Thesis Director & Academic Mentorship",
+    description: "Supervising Bachelor of Science in Nursing and Midwifery students in research methodology, proposal development, and academic writing.",
+    meta: "2025 • RHIH",
+    imageRatio: 4 / 3,
+    image: "https://images.unsplash.com/photo-1769905226600-1d447fe7d020?q=80&w=1600&auto=format&fit=crop",
+    imageAlt: "Graduates in caps and gowns at a university ceremony",
+    link: "#"
+  },
+  {
+    id: "cataract-outreach",
+    icon: Users,
+    iconLabel: "Programs",
+    title: "National Cataract Surgery Outreach",
+    description: "Coordinated national cataract surgery outreaches across public hospitals with The Fred Hollows Foundation & Rwanda Ophthalmology Society.",
+    meta: "2026 • Rwanda",
+    imageRatio: 4 / 3,
+    image: "https://images.unsplash.com/photo-1534990806788-cd4dd131f626?q=80&w=1600&auto=format&fit=crop",
+    imageAlt: "Close-up of a human eye representing vision care outreach",
+    link: "#"
   },
 ];
 
@@ -135,8 +136,8 @@ export function Projects({
               My projects
             </h2>
             <p className="max-w-[33ch] text-[18px] leading-[1.45] tracking-tight text-foreground/65 sm:text-[20px]">
-              From playful experiments to thoughtful systems, a look at the
-              work I&rsquo;m proud to have shipped.
+              Research, healthcare initiatives, and academic contributions
+              advancing health equity in Rwanda.
             </p>
           </FadeIn>
         ) : null}
@@ -147,7 +148,7 @@ export function Projects({
           ))}
         </div>
 
-        {viewMoreVisible ? (
+        {viewMoreVisible && PROJECTS.length > 4 ? (
           <div className="mt-12 flex justify-center sm:mt-16">
             <Link
               href="/projects"
@@ -174,50 +175,61 @@ function ProjectCard({
   index: number;
 }): ReactNode {
   const Icon = project.icon;
+
+  const CardContent = (
+    <article className="project-card flex cursor-pointer flex-col gap-4 rounded-3xl border border-foreground/8 bg-background p-3 transition-shadow hover:shadow-lg sm:p-3.5">
+      <header className="flex items-center gap-2.5 px-1 pt-2">
+        <span className="border-foreground/10 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border bg-background">
+          <Icon className="h-3.5 w-3.5 text-foreground" aria-hidden="true" />
+        </span>
+        <span className="text-sm font-medium tracking-tight text-foreground">
+          {project.iconLabel}
+        </span>
+      </header>
+
+      <div
+        className="project-card__image ring-foreground/5 relative w-full overflow-hidden rounded-2xl bg-foreground/5 ring-1"
+        style={{ aspectRatio: project.imageRatio }}
+      >
+        <div className="project-card__image-inner">
+          <Image
+            src={project.image}
+            alt={project.imageAlt}
+            fill
+            sizes="(min-width: 1024px) 540px, (min-width: 768px) 45vw, 100vw"
+            className="object-cover"
+            priority={index < 2}
+          />
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-2.5 px-1 pb-1">
+        <h3 className="text-[20px] font-medium leading-[1.2] tracking-tight text-foreground sm:text-[22px]">
+          {project.title}
+        </h3>
+        <p className="text-[14px] leading-normal tracking-tight text-foreground/65 sm:text-[15px]">
+          {project.description}
+        </p>
+      </div>
+
+      <p className="px-1 pb-2 text-[12px] tracking-tight text-foreground/50">
+        {project.meta}
+      </p>
+    </article>
+  );
+
   return (
     <FadeIn
       delay={Math.min(index * 0.06, 0.3)}
       className="mb-6 break-inside-avoid md:mb-7"
     >
-      <article className="project-card flex cursor-pointer flex-col gap-4 rounded-3xl border border-foreground/8 bg-background p-3 sm:p-3.5">
-        <header className="flex items-center gap-2.5 px-1 pt-2">
-          <span className="border-foreground/10 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border bg-background">
-            <Icon className="h-3.5 w-3.5 text-foreground" aria-hidden="true" />
-          </span>
-          <span className="text-sm font-medium tracking-tight text-foreground">
-            {project.iconLabel}
-          </span>
-        </header>
-
-        <div
-          className="project-card__image ring-foreground/5 relative w-full overflow-hidden rounded-2xl bg-foreground/5 ring-1"
-          style={{ aspectRatio: project.imageRatio }}
-        >
-          <div className="project-card__image-inner">
-            <Image
-              src={project.image}
-              alt={project.imageAlt}
-              fill
-              sizes="(min-width: 1024px) 540px, (min-width: 768px) 45vw, 100vw"
-              className="object-cover"
-              priority={index < 2}
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-2.5 px-1 pb-1">
-          <h3 className="text-[20px] font-medium leading-[1.2] tracking-tight text-foreground sm:text-[22px]">
-            {project.title}
-          </h3>
-          <p className="text-[14px] leading-normal tracking-tight text-foreground/65 sm:text-[15px]">
-            {project.description}
-          </p>
-        </div>
-
-        <p className="px-1 pb-2 text-[12px] tracking-tight text-foreground/50">
-          {project.meta}
-        </p>
-      </article>
+      {project.link ? (
+        <Link href={project.link} target="_blank" rel="noopener noreferrer">
+          {CardContent}
+        </Link>
+      ) : (
+        CardContent
+      )}
     </FadeIn>
   );
 }

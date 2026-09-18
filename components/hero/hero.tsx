@@ -14,23 +14,19 @@ export function Hero(): ReactNode {
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-8">
           <FadeIn className="flex flex-col gap-4">
             <p className="text-[20px] leading-tight tracking-tight font-medium text-foreground">
-              Hey
+              Hellooo
               <span aria-hidden="true" className="mx-0.5">
-                👋
+                🙋‍♂️ 
               </span>
-              , I&rsquo;m Josh
+              , I&rsquo;m John
             </p>
 
-            <h1 className="text-[2.75rem] font-medium leading-[1.05] tracking-tight text-foreground md:text-[2.5rem] lg:text-[3.65rem]">
-              <span className="block whitespace-nowrap">
-                Design engineer &
-              </span>
-              <span className="block whitespace-nowrap">AI enthusiast</span>
+            <h1 className="text-4xl md:text-6xl font-serif">
+              John Peter Ndikubwimana
             </h1>
 
-            <p className="max-w-[34ch] text-[22px] leading-[1.4] tracking-tight text-foreground/65">
-              Independent engineer focused on interfaces that feel calm,
-              considered, and quietly fast.
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">
+              Healthcare Management | Global Health | Mental Health | Research Professional
             </p>
 
             <HeroCtas />

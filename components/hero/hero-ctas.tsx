@@ -10,7 +10,7 @@ import { ContactButton } from "@/components/contact/contact-button";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function HeroCtas(): ReactNode {
-  return (
+  return ( 
     <LayoutGroup>
       <motion.div
         layout
