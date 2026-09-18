@@ -11,7 +11,8 @@ import type { ReactNode } from "react";
 
 export const metadata: Metadata = createMetadata({
   title: "About",
-  description: "About me, background, and how to get in touch.",
+  description:
+    "A little about John Peter, his background, work, and passion for improving healthcare.",
   path: "/about",
 });
 
@@ -26,17 +27,61 @@ export default function AboutPage(): ReactNode {
         <FadeIn delay={0.5}>
           <div className="rounded-4xl border border-foreground/5 bg-foreground/1.5 p-8 sm:p-12 dark:bg-foreground/3">
             <h1 className="font-serif text-[1.75rem] font-medium tracking-tight text-foreground sm:text-[2rem]">
-              Hello! I&rsquo;m <span className="border-b border-foreground/30 pb-0.5">John Peter</span>.
+              Hello! I&rsquo;m{" "}
+              <span className="border-b border-foreground/30 pb-0.5">
+                John Peter
+              </span>
+              .
             </h1>
+
             <div className="mt-8 space-y-6 text-[17px] leading-[1.7] tracking-tight text-foreground/75 sm:text-[18px]">
               <p>
-                A <strong className="font-semibold text-foreground">public health researcher and quality improvement specialist</strong> passionate about strengthening health systems and improving care where it&rsquo;s needed most. With a background spanning <strong className="font-semibold text-foreground">clinical psychology</strong> and <strong className="font-semibold text-foreground">global health delivery</strong>, I bring together research rigor and hands-on program work across Rwanda&rsquo;s healthcare ecosystem.
+                I&rsquo;m a{" "}
+                <strong className="font-semibold text-foreground">
+                  public health researcher and quality improvement specialist
+                </strong>{" "}
+                who cares deeply about making healthcare better, more
+                accessible, and more meaningful for the people who rely on it.
+                My background in{" "}
+                <strong className="font-semibold text-foreground">
+                  clinical psychology
+                </strong>{" "}
+                and{" "}
+                <strong className="font-semibold text-foreground">
+                  global health delivery
+                </strong>{" "}
+                has shaped the way I approach my work — combining research,
+                empathy, and practical solutions to help strengthen healthcare
+                systems in Rwanda and beyond.
               </p>
+
               <p>
-                My work began at the intersection of research and real-world impact — realizing how often good evidence never reaches the people delivering care. That led me to embrace <strong className="font-semibold text-foreground">evidence-based, human-centered health interventions</strong> as both a mindset and a practice, balancing academic rigor with practical, on-the-ground delivery.
+                Over time, I&rsquo;ve learned that having good research is only
+                part of the journey. What matters just as much is making sure
+                that knowledge actually reaches the people who can use it.
+                That realization has shaped my approach to{" "}
+                <strong className="font-semibold text-foreground">
+                  evidence-based, human-centered healthcare
+                </strong>{" "}
+                — work that is grounded in research but never loses sight of
+                the people behind the data.
               </p>
+
               <p>
-                Currently contributing to <strong className="font-semibold text-foreground">psycho-oncology research, health data collection, and academic mentorship</strong> across leading institutions in Rwanda, I&rsquo;m always looking for opportunities to <strong className="font-semibold text-foreground">advance health equity and support the next generation of health professionals</strong>.
+                Today, my work brings together{" "}
+                <strong className="font-semibold text-foreground">
+                  psycho-oncology research, health data collection, and
+                  academic mentorship
+                </strong>
+                . I enjoy learning, asking better questions, working with
+                people from different backgrounds, and turning ideas into
+                practical improvements. At the heart of it all is a simple
+                goal: to{" "}
+                <strong className="font-semibold text-foreground">
+                  help build healthier communities, promote health equity, and
+                  support the people who will shape the future of healthcare
+                </strong>
+                .
               </p>
             </div>
           </div>
