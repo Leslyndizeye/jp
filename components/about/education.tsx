@@ -29,12 +29,7 @@ const ENTRIES: Entry[] = [
     period: "Completed",
     brand: "#004B8D",
   },
-  {
-    school: "Southern New Hampshire University (SNHU)",
-    degree: "Advanced Diploma in Science",
-    period: "Completed",
-    brand: "#004B8D",
-  },
+
 ];
 
 const ROW_HEIGHT = 64;
